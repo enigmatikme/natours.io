@@ -1,0 +1,105 @@
+.story {
+  width: 75%;
+  margin: 0 auto;
+  //it is a block element inside block element so we can use margin
+  box-shadow: 0 3rem 6rem rgba($color-black, .1);
+  //x, y, blur, color
+  background-color: rgba($color-white, .6);
+  border-radius: 3px;
+  padding: 6rem;
+  font-size: $default-font-size;
+  //paragraph will inherit
+  padding: 9rem;
+  //6 + 3 (&__shapes transform. element is taking up half of the padding so we
+  //makeup forit
+  transform: skewX(-12deg);
+
+  @include respond(tab-port) {
+    width: 100%;
+    padding: 4rem;
+    padding: 7rem;
+  }
+  @include respond(phone) {
+    transform: skewX(0);
+  }
+
+  &__shape {
+    width: 15rem;
+    height: 15rem;
+    float: left;
+    background-color: orangered;
+    //defines where the content flows around the element -- circle
+    shape-outside: circle(50% at 50% 50%);
+    //define a vectorize shape, for circle you define size and position of the
+    //center [radius relative to current element (7.5r 15 in diameter), x y]
+    //if we want element to look like circle, we use clippath
+    transform: translateX(-3rem ) skewX(12deg);
+    //best way to move floated elements around
+    position: relative;
+    
+    //*for support query
+    //image overlaps width/height so must hide 
+    overflow: hidden;
+    border-radius: 50%;
+    
+    @supports (clip-path: circle(50% at 50% 50%)) or (-webkit-clip-path: circle(50% at 50% 50%)) {
+      -webkit-shape-outside: circle(50% at 50% 50%);
+      //* for this to work this element must be floated, and must have dimensions (width/height)
+      -webkit-clip-path: circle(50% at 50% 50%);
+      clip-path: circle(50% at 50% 50%);
+      width: 15rem;
+      height: 15rem;
+      border-radius: none;
+    }
+
+    @include respond(phone) {
+      transform: translateX(-3rem ) skewX(0);
+    }
+  }
+
+  &__img {
+    height: 100%;
+    //100% of parent which is __shape = 15rem
+    transform: translateX(-4rem) scale(1.4);
+    // backface-visibility: hidden;
+    transition: all .5s;
+    border: none;
+  }
+
+  &__text {
+    transform: skewX(12deg);
+
+    @include respond(phone) {
+      transform: skewX(0);
+    }
+  }
+
+  &__caption {
+  //initial state
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    color: $color-white;
+    font-size: 1.7rem;
+    text-transform: uppercase;
+    text-align: center;
+    opacity: 0;
+    transition: all .5s;
+    backface-visibility: hidden;
+    //fixes little glitch when hover styles are applied
+  }
+
+  &:hover &__caption {
+  //as soon as story is hovered, we want to change caption
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  &:hover &__img {
+    transform: translateX(-4rem) scale(1.2);
+    //i dont think transforms are inherited so translatex needed
+    filter: blur(3px) brightness(80%);
+
+  }
+}

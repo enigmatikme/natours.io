@@ -1,0 +1,54 @@
+/* reset using universal selector, it will select each and every element and
+apply these selectors to it */
+*,
+*::after, 
+*::before {
+  /** after & before because only the 'real' elements get these behaviors*/
+  margin: 0;
+  padding: 0;
+  /* elements have default margin and padding, we want to start clean */
+  box-sizing: inherit;
+  /* elements inherit this. this is not by itself an inherited prop */
+}
+/* root font size is set in html */
+//! not included as typography bc this defines what 1rem is
+html {
+  /* by setting default root font size users cannot modify it anymore and those
+  with bad eyesight wont be able to modify root font size */
+  /* .625*16 = 10 of 16px (default root font size) */
+  /*! rems do not work with ie */
+  font-size: 62.5%; //1rem = 10px 10px/16px = 62.5%
+
+  // @include respond(phone) { //width < 600
+  // //content we passed into mixin
+  //   font-size: 50%;
+  // }
+  @include respond(tab-land) { //width < 1200?
+    font-size: 56.25%; //1rem = 9px 9px/16= 56.25%
+  }
+  //! ordered this way or else both tab queries will apply
+  @include respond(tab-port) { //width < 900?
+    font-size: 50%; //1rem = 8px 8px/16px = 50%
+  }
+  @include respond(big-desktop) {
+    font-size: 75%; //1rem = 12px 12/16= 75
+  }
+} 
+
+body {
+  /** better practice to do box-sizing here and inheritin global by CSS
+  ** community so its easier to change box sizing in plugings or other components*/
+  /* doesnt add specified widht and height on to element */
+  box-sizing: border-box;
+  padding: 3rem;
+
+  @include respond(tab-port) { //width < 900?
+    padding: 0;
+  }
+}
+
+//text selection
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
+}

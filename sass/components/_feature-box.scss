@@ -1,0 +1,37 @@
+.feature-box { 
+  background-color: rgba($color-white, .8);
+  //want 80% to be white -- opacity of 20%
+  font-size: 1.5rem;
+  padding: 2.5rem;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: $shadow-1;
+
+  transition: transform .3s;
+  //we can write prop we want to animate bc its just one prop
+
+  @include respond(tab-port) {
+    padding: 2rem;
+  }
+  &__icon {
+    //icon is essentially a font
+    font-size: 6rem;
+    margin-bottom: .5rem;
+    display: inline-block;
+    background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    @include respond(tab-port) {
+      margin-bottom: 0;
+    }
+  }
+  
+  // &__text {
+  //   this is a p element inside feature box and font size will be inherited = 1.5rem
+  // }
+
+  &:hover {
+    transform: translateY(-1.5rem) scale(1.03);
+  }
+}

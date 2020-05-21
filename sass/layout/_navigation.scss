@@ -1,0 +1,182 @@
+.navigation {
+  &__checkbox {
+    display: none;
+    transition: all .2s;
+  }
+
+  &__button {
+    background-color: $color-white;
+    height: 7rem;
+    width: 7rem;
+    position: fixed;
+    top: 6rem;
+    right: 6rem;
+    //lesson 49 @ 13:07
+    border-radius: 50%;
+    z-index: 2000;
+    box-shadow: 0 1rem 3rem rgba($color-black, .1);
+    //centers the icon element 
+    text-align: center;
+    cursor: pointer;
+
+    @include respond(tab-port) {
+      top: 4rem;
+      right: 4rem;
+    }
+    @include respond(phone) {
+      top: 3rem;
+      right: 3rem;
+    }
+  }
+
+
+  &__background {
+    height: 6rem;
+    width: 6rem;
+    border-radius: 50%;
+    position: fixed;
+    //similar to absolute but doesnt change when you scroll, takes it out of
+    //flow. specify pos relative to el
+    top: 6.5rem;
+    right: 6.5rem;
+    background-image: radial-gradient($color-primary-light, $color-primary-dark);
+    //linear goes from one side to other, radial starts from middle of el
+    z-index: 1000;
+    //zindex only works on elements that have position defined (Fixed)
+    transition: transform .8s cubic-bezier(0.83, 0, 0.17, 1);;
+    //lesson 50 8:21
+    @include respond(tab-port) {
+      top: 4.5rem;
+      right: 4.5rem;
+    }
+
+    @include respond(phone) {
+      top: 3.5rem;
+      right: 3.5rem;
+    }
+  }
+
+
+  &__nav {
+    height: 100vh;
+    //block level el so it automatically occupies 100% width
+    position: fixed;
+    top: 0;
+    left: 0;
+    //starts at top right of vh corner
+    z-index: 1500;
+    // position: relative;
+    
+    //to hide the nav, cant just do opacity bc the links will still be there
+    opacity: 0;
+    width: 0;
+    transition: all .8s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  }
+
+  &__list {
+    @include centerhorvert;
+    list-style: none;
+    text-align: center;
+  }
+
+  &__item {
+    margin: 1rem;
+  }
+
+  &__link {
+    &:link, 
+    &:visited {
+      //for the normal state
+      display: inline-block;
+      font-size: 3rem;
+      font-weight: 300; 
+      padding: 1rem 2rem;
+      color: $color-white;
+      text-decoration: none;
+      text-transform: uppercase;
+      background-image: linear-gradient(120deg, transparent 50%, transparent 50%, $color-white 50%);
+      background-size: 220%;
+      transition: all .4s;
+
+      span {
+        margin-right: 1.5rem;
+        display: inline-block;
+      }
+    }
+
+    &:hover,
+    &:active {
+      background-position: 100%;
+      color: $color-primary;
+      transform: translateX(1rem);;
+    }
+  }
+  
+  //FUNCTIONALITY
+  &__checkbox:checked ~ &__background {
+    transform: scale(80);
+  }
+  
+  &__checkbox:checked ~ &__nav {
+    opacity: 1;
+    width: 100%;
+  }
+
+  //ICON
+  &__icon {
+    position: relative;
+    //moves the centered(via button class) down
+    margin-top: 3.5rem;
+    //creates lines
+    &, 
+    &::before,
+    &::after {
+      width: 3rem;
+      height: 2px;
+      background-color: $color-grey-dark-3;
+      display: inline-block;
+    }
+    //for before/after to actually appear
+    &::before, 
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      transition: all .2s;
+    }
+
+    &::before {
+      top: -.8rem;
+      //it rotates in center if not defined, rotates from left of el
+      // transform-origin: right;
+    }
+    &::after {
+      top: .8rem;
+      // transform-origin: left;
+    }
+  }
+
+  &__button:hover &__icon::before {
+    //we can select bc icon is child el of button
+    top: -1rem;
+  }
+  &__button:hover &__icon::after {
+    //we can select bc icon is child el of button
+    top: 1rem;
+  }
+
+  &__checkbox:checked + &__button &__icon {
+    background-color: transparent;
+  }
+
+  &__checkbox:checked + &__button &__icon:before {
+    top: 0;
+    //180-45 for 'cooler' rotate effect
+    transform: rotate(135deg);
+  }
+
+  &__checkbox:checked + &__button &__icon:after {
+    top: 0;
+    transform: rotate(-135deg);
+  }
+}

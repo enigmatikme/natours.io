@@ -1,0 +1,1 @@
+<!-- For each piece of the global layout of the project, layouts shoudl work everywhere and on all pages *what holds all the components together -->

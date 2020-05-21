@@ -1,0 +1,54 @@
+// * Clerfix appends a pseudo-after element which will clear these floats
+@mixin clearfix {
+  &::after { //.row::after
+    content: ""; //must always incl this prop or else pseudo-el wont appear on page
+    // we want it empty bc we dont want to see this element on the page
+    display: table;
+    //standard version of clearfix 
+    clear: both;
+    //this will clear both floats, left and right (so it wont matter if we use
+    //left or right
+  }
+}
+
+@mixin centerhorvert {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+//MEDIA QUERY MANAGER 
+/*
+0 - 600px: phone
+600px - 900px: Tablet portrait
+900px - 1200px: Tablet landscape
+[1200 - 1800]: normal styles apply
+1800+: Big Desktop
+
+breakpoint argument choices: 
+- phone 
+- tab-port
+- tab-land
+- big-desktop
+*/
+//1em = 16px (default browser)
+//! rem em are not affected by our root font size
+//! ems are best for media queries for browser compatibility
+
+//ORDER: base+ typography > general layout + grid > page layout > components 
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    //only applies to screens
+    @media only screen and (max-width: 37.5em) { @content; } //600px
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) { @content; } //900px
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) { @content; } //1200px
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) { @content; } //1800px
+  }
+}
