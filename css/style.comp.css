@@ -11,24 +11,16 @@ breakpoint argument choices:
 - tab-land
 - big-desktop
 */
-/* reset using universal selector, it will select each and every element and
-apply these selectors to it */
 *,
 *::after,
 *::before {
-  /** after & before because only the 'real' elements get these behaviors*/
   margin: 0;
   padding: 0;
-  /* elements have default margin and padding, we want to start clean */
-  box-sizing: inherit;
-  /* elements inherit this. this is not by itself an inherited prop */ }
+  box-sizing: inherit; }
 
 /* root font size is set in html */
 html {
-  /* by setting default root font size users cannot modify it anymore and those
-  with bad eyesight wont be able to modify root font size */
   /* .625*16 = 10 of 16px (default root font size) */
-  /*! rems do not work with ie */
   font-size: 62.5%; }
   @media only screen and (max-width: 75em) {
     html {
@@ -41,9 +33,6 @@ html {
       font-size: 75%; } }
 
 body {
-  /** better practice to do box-sizing here and inheritin global by CSS
-  ** community so its easier to change box sizing in plugings or other components*/
-  /* doesnt add specified widht and height on to element */
   box-sizing: border-box;
   padding: 3rem; }
   @media only screen and (max-width: 56.25em) {
@@ -54,11 +43,7 @@ body {
   background-color: #55c57a;
   color: #fff; }
 
-/* a more advanced animation property than trasition bc it gives you more
-control over the steps of animation */
 @keyframes moveInLeft {
-  /* for browser performance its best to only animate 2 things, here it is
-  opacity and transform proprety */
   0% {
     opacity: 0;
     transform: translateX(-10rem); }
@@ -69,8 +54,6 @@ control over the steps of animation */
     transform: translate(0); } }
 
 @keyframes moveInRight {
-  /* for browser performance its best to only animate 2 things, here it is
-  opacity and transform proprety */
   0% {
     opacity: 0;
     transform: translateX(10rem); }
@@ -81,8 +64,6 @@ control over the steps of animation */
     transform: translate(0); } }
 
 @keyframes moveInBottom {
-  /* for browser performance its best to only animate 2 things, here it is
-  opacity and transform proprety */
   0% {
     opacity: 0;
     transform: translateY(3rem); }
@@ -93,30 +74,24 @@ control over the steps of animation */
 body {
   font-family: "Lato", sans-serif;
   font-weight: 400;
-  /* font-size: 16px; */
   line-height: 1.7;
-  /* 1.7 times bigger than the predefined line-height */
   color: #777; }
 
 .heading-primary {
   color: #fff;
   text-transform: uppercase;
-  backface-visibility: hidden;
   /* gets rid of the slight div shake for keyframes animation, hides what is
   behind the animated div. no one knows why it happens */
+  backface-visibility: hidden;
   margin-bottom: 6rem; }
   .heading-primary--main {
     display: block;
-    /* by default it is inline, block elements occupy entire widths that they have
-    available and create line breaks after and before them */
     font-weight: 400;
     font-size: 6rem;
     letter-spacing: 3.5rem;
     animation-name: moveInLeft;
     animation-duration: 1s;
-    animation-timing-function: ease-out;
-    /* animation-delay: 3s;
-    animation-iteration-count: 3; */ }
+    animation-timing-function: ease-out; }
     @media only screen and (max-width: 37.5em) {
       .heading-primary--main {
         letter-spacing: 1rem;
@@ -126,7 +101,6 @@ body {
     font-size: 2rem;
     font-weight: 700;
     letter-spacing: 1.74rem;
-    /* instead of writing line 82-84 you can use animation prop to define vals */
     animation: moveInRight 1s ease-out; }
     @media only screen and (max-width: 37.5em) {
       .heading-primary--sub {
@@ -140,6 +114,7 @@ body {
   background-image: linear-gradient(to right, #7ed56f, #28b485);
   background-clip: text;
   -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   color: transparent;
   letter-spacing: .2rem;
   transition: all .2s; }
@@ -190,30 +165,24 @@ body {
 body {
   font-family: "Lato", sans-serif;
   font-weight: 400;
-  /* font-size: 16px; */
   line-height: 1.7;
-  /* 1.7 times bigger than the predefined line-height */
   color: #777; }
 
 .heading-primary {
   color: #fff;
   text-transform: uppercase;
-  backface-visibility: hidden;
   /* gets rid of the slight div shake for keyframes animation, hides what is
   behind the animated div. no one knows why it happens */
+  backface-visibility: hidden;
   margin-bottom: 6rem; }
   .heading-primary--main {
     display: block;
-    /* by default it is inline, block elements occupy entire widths that they have
-    available and create line breaks after and before them */
     font-weight: 400;
     font-size: 6rem;
     letter-spacing: 3.5rem;
     animation-name: moveInLeft;
     animation-duration: 1s;
-    animation-timing-function: ease-out;
-    /* animation-delay: 3s;
-    animation-iteration-count: 3; */ }
+    animation-timing-function: ease-out; }
     @media only screen and (max-width: 37.5em) {
       .heading-primary--main {
         letter-spacing: 1rem;
@@ -223,7 +192,6 @@ body {
     font-size: 2rem;
     font-weight: 700;
     letter-spacing: 1.74rem;
-    /* instead of writing line 82-84 you can use animation prop to define vals */
     animation: moveInRight 1s ease-out; }
     @media only screen and (max-width: 37.5em) {
       .heading-primary--sub {
@@ -237,6 +205,7 @@ body {
   background-image: linear-gradient(to right, #7ed56f, #28b485);
   background-clip: text;
   -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   color: transparent;
   letter-spacing: .2rem;
   transition: all .2s; }
@@ -273,80 +242,63 @@ body {
     height: 100%;
     object-fit: cover; }
 
-.btn {
-  /* after pseudoelement adds a virtual element right after the element that we're
-  selecting, and we can style that element */
-  /* &-white {
-    animation: moveInBottom 1s ease-out;
-  } */ }
-  .btn, .btn:link, .btn:visited {
-    /*link is the link psuedoclass. pseudoclasses: are a special state of the
+.btn, .btn:link, .btn:visited {
+  /*link is the link psuedoclass. pseudoclasses: are a special state of the
   selector, it is the state of the btn selector. includes select last child,
   hover, clicked. to style elements under special conditions */
-    /* link is a special state of a seletor when it is an anchor element */
-    /* visited is when the user has clicked on the link before and visiting again */
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 1.5rem 4rem;
-    /* default is inline element bc its text, so inline block prop treats it like
-    its another block. shoudl always do this when you want to add heights weight
-    to element*/
-    display: inline-block;
-    border-radius: 10rem;
-    transition: all .2s;
-    /* transition has to be on initial state, makes animations more fluid */
-    position: relative;
-    /* to hide the after pseudoelement behind our btn*/
-    font-size: 1.6rem;
-    border: none;
-    cursor: pointer; }
-  .btn:hover {
-    transform: translateY(-0.3rem);
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
-    /* when we hover we want some styles for the after pseudolement */ }
-    .btn:hover::after {
-      transform: scaleX(1.4) scaleY(1.6);
-      /* transform: scale(1.5); */
-      /* scale increases element, 2 double the size */
-      opacity: 0;
-      /*trick to fade something out*/ }
-  .btn:active, .btn:focus {
-    outline: none;
-    /* -1px is in relation to the initial state, the link state^, not the hover*/
-    transform: translateY(-1px);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
-  .btn--white {
-    background-color: #fff;
-    color: #777;
-    /* to make the background color white we need to declare it (why tho) */ }
-    .btn--white::after {
-      background-color: #fff; }
-  .btn--green {
-    background-color: #55c57a;
-    color: #fff;
-    /* to make the background color white we need to declare it (why tho) */ }
-    .btn--green::after {
-      background-color: #55c57a; }
-  .btn::after {
-    /* have to specifiy a content element but can be empty or else nothing will appear*/
-    content: "";
-    display: inline-block;
-    /* is inline block because the btn we have is also an inline-block*/
-    height: 100%;
-    width: 100%;
-    border-radius: 10rem;
-    top: 0;
-    left: 0;
-    position: absolute;
-    z-index: -1;
-    transition: all .4s;
-    /* trans prop has to be on initial state*/ }
-  .btn--animated {
-    animation: moveInBottom .5s ease-out .75s;
-    /* [animation name, anim duration, anim timing function, anim delay] */
-    animation-fill-mode: backwards;
-    /* fixes btn visibility upon first refresh: will automatically apply the
-    styles of the 0% before anim starts */ }
+  /* link is a special state of a seletor when it is an anchor element */
+  /* visited is when the user has clicked on the link before and visiting again */
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  display: inline-block;
+  border-radius: 10rem;
+  transition: all .2s;
+  position: relative;
+  font-size: 1.6rem;
+  border: none;
+  cursor: pointer; }
+
+.btn:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+  .btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0; }
+
+.btn:active, .btn:focus {
+  outline: none;
+  transform: translateY(-1px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
+
+.btn--white {
+  background-color: #fff;
+  color: #777; }
+  .btn--white::after {
+    background-color: #fff; }
+
+.btn--green {
+  background-color: #55c57a;
+  color: #fff; }
+  .btn--green::after {
+    background-color: #55c57a; }
+
+.btn::after {
+  /* have to specifiy a content element but can be empty or else nothing will appear*/
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 10rem;
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: -1;
+  transition: all .4s; }
+
+.btn--animated {
+  animation: moveInBottom .5s ease-out .75s;
+  animation-fill-mode: backwards; }
 
 .btn-text:link, .btn-text:visited {
   font-size: 1.6rem;
@@ -805,17 +757,14 @@ body {
 
 .header {
   height: 85vh;
-  /* 95% of viewport height */
   position: relative;
-  /* for the logobox absolute positioning where top and let start to count from*/
   background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero-small.jpg);
   background-size: cover;
   /* makes sure that it stretches out while maintaing its aspect ratio */
   background-position: top;
   /* as image size changes (resizing browser) image will remain attached on top */
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  /* ampersand copies 'parent' selector */ }
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); }
   @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
     .header {
       -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
@@ -833,23 +782,14 @@ body {
     top: 4rem;
     left: 4rem; }
   .header__logo {
-    height: 3.5rem;
-    /* width will be figured out by the broswer, can also do opposite */ }
+    height: 3.5rem; }
   .header__text-box {
     position: absolute;
     top: 40%;
     left: 50%;
-    /* relative to parent div with absolute */
     transform: translate(-50%, -50%);
-    /* shift half of the width and top of elements height relative to element*/
-    text-align: center;
-    /* aligns text for button and all other elements, using absolute positioning
-    would be overkill*/ }
+    text-align: center; }
 
-/* animate parent div on hover, targeting logo alone does not work, makes it blink */
-/* .logo-box:hover .logo{
-  animation: moveInRight 5s ease-out;
-} */
 .navigation__checkbox {
   display: none;
   transition: all .2s; }
