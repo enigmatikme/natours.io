@@ -1,41 +1,26 @@
-//* row has a 0px height because all of child elements of this row element are
-//  floated so height collapses and becomes 0 (before clearfix hack)
 .row {
-  //standard grid is 1440px width so 1440/10 = xrem
   max-width: $grid-width;
-  // if it has the available space then it will fit 114rem, if not it will fill
-  // 100% of width that it has
-  // background-color: #eee;
+
   margin: 0 auto;
-  // trick to center block elements within block elements, auto will figure out
-  // the margin that we want on the right and left side
   
   &:not(:last-child) {
     //selects everything EXCEPT the last child
     margin-bottom: $gutter-vertical;
-    //adds this behavior to every element except the one passed in
+
     @include respond(tab-port) {
       margin-bottom: $gutter-vertical-small;
     }
   }
 
-  //if under $grid-width, will fill 100% of available width
   @include respond(tab-port) {
     max-width: 50rem;
     padding: 0 3rem;
   }
-  // selects last child 
-  // &:last-child {
-  //   margin-bottom: 0;
-  // }
 
   @include clearfix;
 
-  //* because a lot of classes use the same css props, we can use attributess to
-  //* select them all instead of adding a new class to each element
   [class^="col-"] {
   //* ^ = classes that start with, * = contains, $ = end
-    // background-color: orange;
     float: left;
     &:not(:last-child) {
       margin-right: $gutter-horizontal;

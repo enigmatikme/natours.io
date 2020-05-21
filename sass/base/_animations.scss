@@ -1,8 +1,4 @@
-/* a more advanced animation property than trasition bc it gives you more
-control over the steps of animation */
 @keyframes moveInLeft {
-  /* for browser performance its best to only animate 2 things, here it is
-  opacity and transform proprety */
   0% {
     opacity: 0;
     transform: translateX(-10rem);
@@ -19,8 +15,6 @@ control over the steps of animation */
 }
 
 @keyframes moveInRight {
-  /* for browser performance its best to only animate 2 things, here it is
-  opacity and transform proprety */
   0% {
     opacity: 0;
     transform: translateX(10rem);
@@ -37,8 +31,6 @@ control over the steps of animation */
 }
 
 @keyframes moveInBottom {
-  /* for browser performance its best to only animate 2 things, here it is
-  opacity and transform proprety */
   0% {
     opacity: 0;
     transform: translateY(3rem);

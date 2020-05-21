@@ -1,8 +1,6 @@
 .header {
   height: 85vh;
-  /* 95% of viewport height */
   position: relative;
-  /* for the logobox absolute positioning where top and let start to count from*/
   background-image: linear-gradient(
     to right bottom,
     /* only in sass can you insert hexidecimal val */
@@ -10,8 +8,10 @@
     rgba($color-primary-dark, 0.8)), 
   url(../img/hero-small.jpg);
   background-size: cover;
+
   /* makes sure that it stretches out while maintaing its aspect ratio */
   background-position: top;
+
   /* as image size changes (resizing browser) image will remain attached on top */
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
@@ -29,7 +29,6 @@
       only screen and (min-width: 125em){
     background-image: linear-gradient(
       to right bottom,
-      /* only in sass can you insert hexidecimal val */
       rgba($color-primary-light, 0.8),
       rgba($color-primary-dark, 0.8)), 
     url(../img/hero.jpg);
@@ -39,8 +38,8 @@
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
   }
-  /* ampersand copies 'parent' selector */
-  &__logo-box { //same as .header__logo-box
+
+  &__logo-box {
     position: absolute;
     top: 4rem;
     left: 4rem;
@@ -48,24 +47,15 @@
 
   &__logo {
     height: 3.5rem;
-    /* width will be figured out by the broswer, can also do opposite */
+    // width will be figured out by the broswer, can also do opposite 
   }
 
   &__text-box {
     position: absolute;
     top: 40%;
     left: 50%;
-    /* relative to parent div with absolute */
     transform: translate(-50%, -50%);
-    /* shift half of the width and top of elements height relative to element*/
     text-align: center;
-    /* aligns text for button and all other elements, using absolute positioning
-    would be overkill*/
   }
 }
-
-/* animate parent div on hover, targeting logo alone does not work, makes it blink */
-/* .logo-box:hover .logo{
-  animation: moveInRight 5s ease-out;
-} */
 

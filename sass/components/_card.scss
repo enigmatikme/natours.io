@@ -1,46 +1,40 @@
 .card {
-  //perspective has to be on the parent of the transform prop, experiment.
-  //higher it is less dramatic
-  //* cards are rotating simultaneously 
-
   //FUNCTIONALITY
+
+  //to work in firefox
   perspective: 150rem;
   -moz-perspective: 150rem;
-  //to work in firefox
+
   position: relative;
   height: 52rem;
-  //because children are positioned absolute the height collapses and there is
-  //no height, and there isn't a clearfix problem -- fixes persepctive 
+
   &__side {
     background-color: blue;
     height: 52rem;
-    //have to specify height in both places because height of card & then sides
     transition: all .8s ease;
 
     position: absolute;
     top: 0;
     left: 0;
-    //pos absolute takes it out of flow so div only fits necessary width
     width: 100%;
     -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+
     //hides back part of element, wont be able to see backside of card
+    backface-visibility: hidden;
     border-radius: 3px;
+
     //background image for each card flows over 
     overflow: hidden;
 
     box-shadow: $shadow-1;
-    //[x axis, y axis, blur, color/opacity
     
     &--front {
       background-color: $color-white;
-      // color: black;
     }
 
     &--back {
-    //diff than front size is back is already rotated 180 deg, so on hover it
-    //returns to 0
       transform: rotateY(180deg);
+
       &--1 {
         background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
       }
@@ -56,28 +50,22 @@
   }
 
   &:hover &__side--front {
-  //when we hover we also want the side to transform
     transform: rotateY(-180deg);
   }
 
   &:hover &__side--back {
-  //when we hover we also want the side to transform
     transform: rotateY(0deg);
   }
 
   //FRONT SIDE STYLING
-
   &__picture {
     background-size: cover;
     height: 23rem;
     background-blend-mode: screen;
-    //may not work in IE
+
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-    //! clip path in google chrome breaks overflow that we set on __side, so must define again
-    // border-radius: 3px;
-    // border-top-left-radius: 3px;
-    // border-top-right-radius: 3px;
+
     &--1 {
       //*path relative to compiled css file
       background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark), 
@@ -108,17 +96,14 @@
   }
 
   &__heading-span {
-  //not a child or modifier of heading, so considered new element and not nested
     padding: 1rem 1.5rem;
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
-    //treats one line of text as two, comment out and see diff in padding
 
     &--1 {
       background-image: linear-gradient(to right bottom, 
         rgba($color-secondary-light, .85),
         rgba($color-secondary-dark, .85));
-      //rgba to make it transparent
     }
 
     &--2 {
@@ -141,7 +126,6 @@
       list-style: none;
       width: 80%;
       margin: 0 auto;
-      //centers lists to the center
 
       li {
         text-align: center;
@@ -150,7 +134,6 @@
 
         &:not(:last-child) {
           border-bottom: 1px solid $color-grey-light-2;
-          
         }
       }
     }
@@ -159,21 +142,16 @@
   //FRONT SIDE STYLING
   &__cta {
     position: absolute;
-    //centers element
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    //minus 50% of elements width NOT parent, & height 
     width: 90%;
     text-align: center;
   }
 
   &__price-box {
-  //contains both price-onyl, price-value
-    // text-align: center;
     color: $color-white;
     margin-bottom: 8rem;
-
   }
 
   &__price-only {
@@ -186,10 +164,7 @@
     font-weight: 100;
   }
 
-  //big media query when you're creating 'new' component
-  // @include respond(tab-port) {
-  // cannot add another query to @include
-  //* backface visib when small screen size or no hover capab
+  //* backface visible when small screen size or no hover capability
   @media only screen and (max-width: 56.25em),
     only screen and (hover:none) { //900px
     height: auto;
@@ -199,12 +174,10 @@
 
     &__side {
       height: auto;
-      //pos relative not abs bc no longer have two sides occupying same space
       position: relative;
       box-shadow: none;
 
       &--back {
-      //dont want it to rotate
       transform: rotateY(0);
       clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
       }
@@ -215,11 +188,9 @@
     }
     
     &:hover &__side--front {
-    //dont want to rotate
       transform: rotateY(0);
     }
 
-    //FRONT SIDE STYLING
     &__cta {
       position: relative !important;
       top: 0%;

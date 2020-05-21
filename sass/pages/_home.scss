@@ -2,8 +2,6 @@
   background-color: $color-grey-light-1;
   padding: 25rem 0;
   margin-top: -20vh; 
-  //* to move the grey background up to fill the header white triangle space,
-  //* calculated via header.scss 95vh-75vh
 
   @include respond(tab-port) {
     padding: 20rem 0;
@@ -63,10 +61,8 @@
   rgba($color-white, .9) 50%,
   transparent 50%), 
   url(../img/nat-10.jpg);
-  //to right bottom, or specify angle 
   background-size: 100%;
-  //back-size: 100% same as cover bc it would stretch to fill entire container
-  //where back img is applied
+
   box-shadow: 0 1.5rem 4rem rgba($color-black, .2);
   border-radius: $border-primary;
   //TODO: change into variable

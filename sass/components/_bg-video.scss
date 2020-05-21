@@ -11,9 +11,7 @@
   &__content {
     width: 100%;
     height: 100%;
-    object-fit: cover;
     //will fill entire parent while maintaining aspect ratio, parts that dont fit will be clipped off
-    //diff than back size set to cover, which works with back images and tries
-    //to fit entire element with img, object fit works with html elements or vids but works on imgs
+    object-fit: cover;
   } 
 } 

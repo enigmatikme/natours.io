@@ -8,18 +8,14 @@
     text-transform: uppercase;
     text-decoration: none;
     padding: 1.5rem 4rem;
-    /* default is inline element bc its text, so inline block prop treats it like
-    its another block. shoudl always do this when you want to add heights weight
-    to element*/
+
     display: inline-block;
     border-radius: 10rem;
     transition: all .2s;
-    /* transition has to be on initial state, makes animations more fluid */
+
     position: relative;
-    /* to hide the after pseudoelement behind our btn*/
     font-size: $default-font-size;
 
-    //change for the button el
     border: none;
     cursor: pointer;
   }
@@ -28,20 +24,15 @@
     transform: translateY(-.3rem);
     box-shadow: 0 1rem 2rem rgba($color-black, .2);
 
-     /* when we hover we want some styles for the after pseudolement */  
     &::after {
       transform: scaleX(1.4) scaleY(1.6);
-      /* transform: scale(1.5); */
-      /* scale increases element, 2 double the size */
       opacity: 0;
-      /*trick to fade something out*/
     }
   }
 
   &:active,
   &:focus {
     outline: none;
-    /* -1px is in relation to the initial state, the link state^, not the hover*/
     transform: translateY(-1px);
     box-shadow: 0 .5rem 1rem rgba($color-black, .2);
   }
@@ -50,9 +41,7 @@
     background-color: $color-white;
     color: $color-grey-dark;
 
-    /* to make the background color white we need to declare it (why tho) */
     &::after {
-      // background-color: red;
       background-color: $color-white;
     }
   }
@@ -61,20 +50,15 @@
     background-color: $color-primary;
     color: $color-white;
 
-    /* to make the background color white we need to declare it (why tho) */
     &::after {
-      // background-color: red;
       background-color: $color-primary;
     }
   }
 
-  /* after pseudoelement adds a virtual element right after the element that we're
-  selecting, and we can style that element */
   &::after {
     /* have to specifiy a content element but can be empty or else nothing will appear*/
     content: ""; 
     display: inline-block;
-    /* is inline block because the btn we have is also an inline-block*/
     height: 100%;
     width: 100%;
     border-radius: 10rem;
@@ -83,20 +67,12 @@
     position: absolute;
     z-index: -1;
     transition: all .4s;
-    /* trans prop has to be on initial state*/
   }
 
   &--animated {
     animation: moveInBottom .5s ease-out .75s;
-    /* [animation name, anim duration, anim timing function, anim delay] */
     animation-fill-mode: backwards;
-    /* fixes btn visibility upon first refresh: will automatically apply the
-    styles of the 0% before anim starts */
   }
-
-  /* &-white {
-    animation: moveInBottom 1s ease-out;
-  } */
 }
 
 .btn-text {
@@ -105,11 +81,8 @@
     font-size: $default-font-size;
     color: $color-primary;
     display: inline-block;
-    // inline block so we can use box model props like padding, margin
     text-decoration: none;
     border-bottom: 1px solid $color-primary;
-    //border-bottom instead of text decoration so we can set padding between
-    //line and text
     padding: 3px;
     transition: all .2s;
   }
@@ -124,6 +97,5 @@
   &:active {
     box-shadow: 0 1rem 2rem rgba($color-black, .15);
     transform: translateY(0);
-    //back to original position 
   }
 }

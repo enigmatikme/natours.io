@@ -1,26 +1,20 @@
-// has to do with typography so split from base.scss
 body {
   font-family: "Lato", sans-serif;
   font-weight: 400;
-  /* font-size: 16px; */
   line-height: 1.7;
-  /* 1.7 times bigger than the predefined line-height */
   color: $color-grey-dark;
 }
 
 .heading-primary {
   color: $color-white;
   text-transform: uppercase;
-
-  backface-visibility: hidden;
   /* gets rid of the slight div shake for keyframes animation, hides what is
   behind the animated div. no one knows why it happens */
+  backface-visibility: hidden;
   margin-bottom: 6rem;
 
   &--main {
     display: block;
-    /* by default it is inline, block elements occupy entire widths that they have
-    available and create line breaks after and before them */
     font-weight: 400;
     font-size: 6rem;
     letter-spacing: 3.5rem;
@@ -33,9 +27,6 @@ body {
       letter-spacing: 1rem;
       font-size: 5rem;
     }
-    /* animation-delay: 3s;
-    animation-iteration-count: 3; */
-    
   }
   
   &--sub {
@@ -44,7 +35,6 @@ body {
     font-weight: 700;
     letter-spacing: 1.74rem;
   
-    /* instead of writing line 82-84 you can use animation prop to define vals */
     animation: moveInRight 1s ease-out;
 
     @include respond(phone) {
@@ -58,18 +48,13 @@ body {
   text-transform: uppercase;
   font-weight: 700;
   display: inline-block;
-  //* takes up necessary width of text, not 100% width
   background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
   background-clip: text;
   -webkit-background-clip: text;
-  // background gets clipped exactly where the text is
-  //! both props added for compatibility issue ^
-  // -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
   color: transparent;
   letter-spacing: .2rem;
-  // bc of rounding issues such a small px doesn't have to be rem (2px)
   transition: all .2s;
-  // all - all props that can undergo transition will do so
 
   @include respond(tab-port) {
     font-size: 3rem ;
@@ -81,9 +66,7 @@ body {
 
   &:hover {
     transform: skewY(2deg) skewX(15deg) scale(1.1);
-    //110%
     text-shadow: .5rem 1rem 2rem rgba($color-black, .2);
-    //two directions. 5px is x direct 10 rem in y 2px blur, (color, opacity)
   }
 }
 

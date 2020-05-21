@@ -6,11 +6,10 @@
   top: 0;
   left: 0;
   z-index: 99999;
-  // text-align: center;
   opacity: 0;
   visibility: hidden;
   transition: all .3s;
-  //how to impl blur effect on safari and leave chrome behav alone
+  //how to apply blur effect on safari and leave chrome behav alone
   //* must specify value as well, not just prop
   //! example of graceful degradation using feature query & chrome supports now
   @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
@@ -25,13 +24,10 @@
     background-color: $color-white;
     box-shadow: 0 2rem 4rem rgba($color-black, .2);
     border-radius: 3px;
-    //parent el of right and left, will auto give table-celled the same height
     display: table;
     overflow: hidden;
     opacity: 0;
-    //must define again bc this will override earlier mixin
     transform: translate(-50%, -50%) scale(.25);
-    //.3 delay
     transition: all .4s .3;
 
     @include respond(tab-port) {
@@ -41,8 +37,6 @@
 
   &__left {
     width: 33.333333%;
-    //to place horizontally next to each other, dont know why need right float
-    // float: left;
     display: table-cell;
 
     @include respond(tab-port) {
@@ -53,9 +47,7 @@
 
   &__right {
     height: 66.666667%;
-    // float: left;
     display: table-cell;
-    //table prop aligns content in midle of parent div(?)
     vertical-align: middle;
     padding: 3rem 5rem;
   }
@@ -68,7 +60,7 @@
   &__text {
     font-size: 1.4rem;
     margin-bottom: 4rem;
-    //* can use auto-prefixer instead 
+
     -moz-column-count: 2;
     -moz-column-gap: 4rem;
     -moz-column-rule: 1px solid $color-grey-light-2;
@@ -97,15 +89,12 @@
     }
   }
 
-  //pseudoclass for elements 'targeted' href
-  //once target changes to section tours the target behav will not apply
   &:target {
     opacity: 1;
     visibility: visible;
   }
 
   &__close {
-    //positioned relative to content bc direct parent doesnt have position
     position: absolute;
     color: $color-grey-dark;
     top: 2.5rem;
@@ -114,8 +103,6 @@
     font-size: 3rem;
     display: inline-block;
     transition: all .2s;
-    //symbol is text so need to collapse height to position properly, or default
-    //height will impede 
     line-height: 1;
 
     &:hover {
