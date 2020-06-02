@@ -62,6 +62,11 @@
   &__img {
     display: block;
     width: 100%;
+
+    // @include respond(phone) {
+    //   width: 100%;
+    //   height: 100%;
+    // }
   }
 
   &__text {
